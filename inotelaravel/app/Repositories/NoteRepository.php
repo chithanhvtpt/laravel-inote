@@ -20,15 +20,13 @@ class NoteRepository extends BaseRepository
     public function create(Request $request)
     {
         $data = $request->only("title", "content", "date", "category_id");
-        $data["category_id"] = $request->input("category");
         return Note::query()->create($data);
     }
 
     public function edit(Request $request, $id)
     {
-        $note = Note::query()->findOrFail($id);
+        Note::query()->findOrFail($id);
         $data = $request->only("title", "content", "date", "category_id");
-        $data['category_id'] = $request->input('category');
         return Note::query()->where("id","=", $id)->update($data);
     }
 

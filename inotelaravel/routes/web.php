@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::prefix("/notes")->group(function (){
     Route::get("/", [\App\Http\Controllers\NoteController::class, "index"])->name("notes.index");
     Route::get("/create", [\App\Http\Controllers\NoteController::class, "showFormCreate"])->name("notes.create");
@@ -26,6 +25,8 @@ Route::prefix("/notes")->group(function (){
 Route::prefix("/auth")->group(function (){
     Route::get("/login", [\App\Http\Controllers\UserController::class, "showFormLogin"])->name("login.form");
     Route::post("/login", [\App\Http\Controllers\UserController::class, "login"])->name("auth.login");
+    Route::get("/register", [\App\Http\Controllers\UserController::class, "showFormRegister"])->name("register.form");
+    Route::post("/register", [\App\Http\Controllers\UserController::class, "register"])->name("auth.register");
     Route::get("/logout", [\App\Http\Controllers\UserController::class, "logout"])->name("auth.logout");
 });
 Route::prefix("/categories")->group(function (){
@@ -34,7 +35,7 @@ Route::prefix("/categories")->group(function (){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/auth/redirect/{provider}', [SocialController::class,'redirect']);
 
 Route::get('/callback/{provider}', [SocialController::class, 'callback']);

@@ -30,7 +30,7 @@
         <td>{{$note->title}}</td>
         <td>{{$note->content}}</td>
         <td>{{$note->date}}</td>
-        <td>{{$note->category->name}}</td>
+        <td>{{($note->category) ? $note->category->name : 'chua phan loai' }}</td>
         <td><a type="button" href="{{route("notes.detail", $note->id)}}">Detail</a></td>
         <td><a type="button" href="{{route("notes.edit", $note->id)}}">Edit</a></td>
         <td><a type="button" onclick="return confirm('Are you sure')" href="{{route("notes.delete", $note->id)}}">Delete</a></td>

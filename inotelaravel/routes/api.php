@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get("/note/list", [\App\Http\Controllers\NoteController::class, "index"])->name("note.index");
-Route::post("/create", [\App\Http\Controllers\NoteController::class, "create"])->name("note.create");
-Route::delete("/delete/{note}", [\App\Http\Controllers\NoteController::class, "delete"])->name("note.delete");
-Route::put("/edit/{note}", [\App\Http\Controllers\NoteController::class, "edit"])->name("note.edit");
+Route::prefix("/note")->group(function () {
+    Route::get("/search", [\App\Http\Controllers\NoteController::class, "searchAjax"])->name("note.search");
+    Route::post("/create", [\App\Http\Controllers\NoteController::class, "create"])->name("note.create");
+    Route::delete("/delete/{note}", [\App\Http\Controllers\NoteController::class, "delete"])->name("note.delete");
+    Route::put("/edit/{note}", [\App\Http\Controllers\NoteController::class, "edit"])->name("note.edit");
+
+});
+

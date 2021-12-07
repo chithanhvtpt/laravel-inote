@@ -12,6 +12,8 @@
     <!--[if lt IE 10]-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    @toastr_css
       <![endif]-->
       <!-- Meta -->
       <meta charset="utf-8">
@@ -122,22 +124,27 @@
                                 </div>
                                 <p class="text-muted text-center p-b-5">Sign in with your regular account</p>
                                 <div class="form-group form-primary">
-                                    <input type="email" name="email" class="form-control" required="">
+                                    <input type="email" name="email" class="form-control" >
                                     <span class="form-bar"></span>
                                     <label class="float-label">Email</label>
+                                    @error("email")
+                                    <p class="text text-danger" >{{$message}}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group form-primary">
-                                    <input type="password" name="password" class="form-control" required="">
+                                    <input type="password" name="password" class="form-control" >
                                     <span class="form-bar"></span>
                                     <label class="float-label">Password</label>
+                                    @error("password")
+                                    <p class="text text-danger" >{{$message}}</p>
+                                    @enderror
                                 </div>
                                 <div class="row m-t-25 text-left">
                                     <div class="col-12">
                                         <div class="checkbox-fade fade-in-primary">
                                             <label>
                                                 <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                <span class="text-inverse">Remember me</span>
+
                                             </label>
                                         </div>
                                         <div class="forgot-phone text-right float-right">
@@ -151,7 +158,7 @@
 
                                     </div>
                                 </div>
-                                <p class="text-inverse text-left">Don't have an account?<a href="auth-sign-up-social.html"> <b>Register here </b></a>for free!</p>
+                                <p class="text-inverse text-left">Don't have an account?<a href="{{route("register.form")}}" > <b style="font-weight: bolder">Register here </b></a></p>
                             </div>
                         </div>
                     </form>
@@ -162,7 +169,6 @@
                 <!-- end of col-sm-12 -->
             </div>
             <!-- end of row -->
-        </div>
         <!-- end of container-fluid -->
     </section>
     <!-- Warning Section Starts -->
@@ -189,8 +195,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
           integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
           crossorigin="anonymous"></script>
+  @jquery
+  @toastr_js
+  @toastr_render
 </body>
-
-
-<!-- Mirrored from demo.dashboardpack.com/admindek-html/default/auth-sign-in-social.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 May 2021 03:15:27 GMT -->
 </html>
